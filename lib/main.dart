@@ -90,43 +90,35 @@ class _MainScreenState extends State<MainScreen> {
           padding: const EdgeInsets.symmetric(vertical: 40),
           child: Column(
             children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: const [
-                    Center(
-                      child: Image(
-                        height: 40,
-                        width: 200,
-                        image: AssetImage('lib/images/marvel.png'),
-                      ),
+              Column(
+                children: const [
+                  Center(
+                    child: Image(
+                      height: 40,
+                      width: 200,
+                      image: AssetImage('lib/images/marvel.png'),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Text(
-                      'Choose your hero',
-                      style: textStyle,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    'Choose your hero',
+                    style: textStyle,
+                  ),
+                ],
               ),
               Expanded(
-                flex: 4,
-                child: Stack(
-                  children: [
-                    Swiper(
-                      scale: 0.6,
-                      viewportFraction: 1,
-                      itemCount: items.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return HeroCard(
-                            name: items[index].name,
-                            imagePath: items[index].imagePath);
-                      },
-                      onIndexChanged: (index) => onIndexChanged(index),
-                    ),
-                  ],
+                child: Swiper(
+                  scale: 0.6,
+                  viewportFraction: 1,
+                  itemCount: items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return HeroCard(
+                        name: items[index].name,
+                        imagePath: items[index].imagePath);
+                  },
+                  onIndexChanged: (index) => onIndexChanged(index),
                 ),
               ),
             ],
@@ -166,8 +158,9 @@ class HeroCard extends StatelessWidget {
             imagePath,
             fit: BoxFit.fill,
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 30, left: 40),
+          Positioned(
+            bottom: 30,
+            left: 40,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               verticalDirection: VerticalDirection.up,
