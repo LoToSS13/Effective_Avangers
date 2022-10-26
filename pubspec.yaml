@@ -17,6 +17,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   card_swiper: ^2.0.4
+  cached_network_image: 
 
 dev_dependencies:
   flutter_test:
@@ -28,11 +29,5 @@ flutter:
   uses-material-design: true
   assets:
     - lib/images/marvel.png
-    - lib/images/iron man.jpg
-    - lib/images/spider-man.jpg
-    - lib/images/captain america.jpg
-    - lib/images/thor.jpg
-    - lib/images/thanos.jpg
-    - lib/images/deadpool.jpg
-    - lib/images/doctor strange.jpg
+
  
