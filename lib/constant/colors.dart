@@ -9,3 +9,6 @@ const Color doctorStrangeBackgroundColor = Color(0xff067950);
 const Color deadpoolBackgroundColor = Color(0xff770309);
 
 const Color mainBackgroundColor = Color(0xff2B262B);
+
+const Color marvelColor = Color(0xffFC0115);
+const Color whiteColor = Color(0xffFDFDFE);

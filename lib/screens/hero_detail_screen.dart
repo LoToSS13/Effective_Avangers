@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:effective_avangers/constant/colors.dart';
 import 'package:effective_avangers/constant/text_styles.dart';
 import 'package:effective_avangers/models/hero_info.dart';
 import 'package:flutter/material.dart';
@@ -37,24 +38,35 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
                 },
                 icon: const Icon(
                   Icons.arrow_back,
-                  color: Colors.white,
+                  color: marvelColor,
                 ),
               )),
           Positioned(
               left: 15,
               bottom: 20,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.heroInfo.name,
-                    style: nameTextStyle,
+                  SizedBox(
+                    width: 300,
+                    child: Text(
+                      widget.heroInfo.name,
+                      style: nameTextStyle,
+                      softWrap: true,
+                      maxLines: 3,
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    widget.heroInfo.description,
-                    style: descriptionTextStyle,
+                  SizedBox(
+                    width: 400,
+                    child: Text(
+                      widget.heroInfo.description,
+                      style: descriptionTextStyle,
+                      softWrap: true,
+                      maxLines: 20,
+                    ),
                   )
                 ],
               ))

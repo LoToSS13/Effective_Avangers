@@ -25,18 +25,20 @@ class HeroCard extends StatelessWidget {
               tag: heroInfo.name,
               child: CachedNetworkImage(
                 imageUrl: heroInfo.imagePath,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             Positioned(
               bottom: 30,
               left: 40,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                verticalDirection: VerticalDirection.up,
-                children: [
-                  Text(heroInfo.name, style: nameTextStyle),
-                ],
+              child: SizedBox(
+                width: 300,
+                child: Text(
+                  heroInfo.name,
+                  style: nameTextStyle,
+                  maxLines: 3,
+                  softWrap: true,
+                ),
               ),
             ),
           ]),

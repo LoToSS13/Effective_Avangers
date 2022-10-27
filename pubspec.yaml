@@ -18,6 +18,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   card_swiper: ^2.0.4
   cached_network_image: 
+  dio: ^4.0.6
+  palette_generator: ^0.3.3+2 
 
 dev_dependencies:
   flutter_test:

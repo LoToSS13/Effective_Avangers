@@ -1,6 +1,10 @@
+import 'package:effective_avangers/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 const TextStyle nameTextStyle = TextStyle(
-    color: Color(0xffFDFDFE), fontSize: 30, fontWeight: FontWeight.w700);
-const TextStyle descriptionTextStyle = TextStyle(
-    color: Color(0xffFDFDFE), fontSize: 20, fontWeight: FontWeight.w400);
+    color: whiteColor,
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    overflow: TextOverflow.fade);
+const TextStyle descriptionTextStyle =
+    TextStyle(color: whiteColor, fontSize: 20, fontWeight: FontWeight.w700);
