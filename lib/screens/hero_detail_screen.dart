@@ -51,7 +51,8 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
                     width: 300,
                     child: Text(
                       widget.heroInfo.name,
-                      style: nameTextStyle,
+                      style: nameTextStyle(
+                          widget.heroInfo.textColor ?? whiteColor),
                       softWrap: true,
                       maxLines: 3,
                     ),
@@ -63,7 +64,8 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
                     width: 400,
                     child: Text(
                       widget.heroInfo.description,
-                      style: descriptionTextStyle,
+                      style: descriptionTextStyle(
+                          widget.heroInfo.textColor ?? whiteColor),
                       softWrap: true,
                       maxLines: 20,
                     ),

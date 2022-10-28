@@ -20,6 +20,7 @@ dependencies:
   cached_network_image: 
   dio: ^4.0.6
   palette_generator: ^0.3.3+2 
+  drift: ^2.2.0
 
 dev_dependencies:
   flutter_test:

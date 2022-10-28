@@ -6,6 +6,8 @@ class ApiClient {
   final _baseAPI = MarvelApi.baseApi;
   final _getCharacters = MarvelApi.getCharacters;
   final _dio = Dio();
+  final ts = 1;
+  final limit = 58;
 
   Future<List<HeroInfo>> getChars(
       String apiKey, String hash, String eventsId) async {
@@ -15,8 +17,8 @@ class ApiClient {
         'apikey': apiKey,
         'hash': hash,
         'events': eventsId,
-        'ts': 1,
-        'limit': 50
+        'ts': ts,
+        'limit': limit
       });
     } on Exception {
       rethrow;

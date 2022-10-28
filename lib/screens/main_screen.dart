@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:effective_avangers/constant/colors.dart';
 import 'package:effective_avangers/constant/keys.dart';
 import 'package:effective_avangers/models/hero_info.dart';
@@ -10,7 +12,6 @@ import 'package:palette_generator/palette_generator.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -49,6 +50,8 @@ class _MainScreenState extends State<MainScreen> {
           NetworkImage(item.imagePath),
           maximumColorCount: 20,
         );
+        item.textColor =
+            paletteGenerator!.dominantColor?.bodyTextColor.withOpacity(1);
         item.backgroundColor = paletteGenerator!.dominantColor!.color;
       }
     }
@@ -84,7 +87,6 @@ class _MainScreenState extends State<MainScreen> {
         infos: infos,
       );
     }
-
     generateBackGroundColors();
     return Scaffold(
       backgroundColor: mainBackgroundColor,
