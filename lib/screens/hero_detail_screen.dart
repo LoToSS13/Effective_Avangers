@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:effective_avangers/constant/colors.dart';
 import 'package:effective_avangers/constant/text_styles.dart';
-import 'package:effective_avangers/models/hero_info.dart';
+import 'package:effective_avangers/models/hero_info_data.dart';
 import 'package:flutter/material.dart';
 
 class HeroDetailScreen extends StatefulWidget {
-  final HeroInfo heroInfo;
+  final HeroInfoModel heroInfo;
   const HeroDetailScreen({Key? key, required this.heroInfo}) : super(key: key);
 
   @override

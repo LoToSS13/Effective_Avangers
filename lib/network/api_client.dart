@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:effective_avangers/models/hero_info.dart';
+import 'package:effective_avangers/models/hero_info_data.dart';
 import 'package:effective_avangers/network/marvel_api.dart';
 
 class ApiClient {
@@ -9,7 +9,7 @@ class ApiClient {
   final ts = 1;
   final limit = 58;
 
-  Future<List<HeroInfo>> getChars(
+  Future<List<HeroInfoModel>> getChars(
       String apiKey, String hash, String eventsId) async {
     late dynamic response;
     try {
@@ -25,10 +25,10 @@ class ApiClient {
     }
 
     final data = response.data['data'];
-    List<HeroInfo> result = [];
+    List<HeroInfoModel> result = [];
 
     for (var item in data['results']) {
-      result.add(HeroInfo(
+      result.add(HeroInfoModel(
           imagePath:
               item['thumbnail']['path'] + '.' + item['thumbnail']['extension'],
           name: item['name'],

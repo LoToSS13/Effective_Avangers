@@ -1,11 +1,11 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:effective_avangers/models/hero_info.dart';
+import 'package:effective_avangers/models/hero_info_data.dart';
 import 'package:effective_avangers/widgets/hero_card.dart';
 import 'package:flutter/material.dart';
 
 class SwiperWidget extends StatelessWidget {
   final Function(int) onIndexChanged;
-  final List<HeroInfo> infos;
+  final List<HeroInfoModel> infos;
   const SwiperWidget(
       {Key? key, required this.onIndexChanged, required this.infos})
       : super(key: key);
