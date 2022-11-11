@@ -125,7 +125,7 @@ class _MainScreenState extends State<MainScreen> {
       child = Center(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: whiteColor, shape: const CircleBorder()),
+                backgroundColor: whiteColor, shape: const CircleBorder()),
             onPressed: () {
               errorMessage = '';
               getData();

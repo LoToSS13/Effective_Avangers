@@ -28,11 +28,7 @@ class ApiClient {
     List<HeroInfoModel> result = [];
 
     for (var item in data['results']) {
-      result.add(HeroInfoModel(
-          imagePath:
-              item['thumbnail']['path'] + '.' + item['thumbnail']['extension'],
-          name: item['name'],
-          description: item['description']));
+      result.add(HeroInfoModel.fromJSON(item));
     }
 
     return result;
