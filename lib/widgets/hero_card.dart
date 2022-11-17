@@ -23,7 +23,7 @@ class HeroCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           child: Stack(fit: StackFit.passthrough, children: [
             Hero(
-              tag: heroInfo.name,
+              tag: heroInfo.id,
               child: CachedNetworkImage(
                 imageUrl: heroInfo.imagePath,
                 fit: BoxFit.cover,

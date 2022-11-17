@@ -19,7 +19,7 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
       body: Stack(
         children: [
           Hero(
-            tag: widget.heroInfo.name,
+            tag: widget.heroInfo.id,
             child: CachedNetworkImage(
               imageUrl: widget.heroInfo.imagePath,
               filterQuality: FilterQuality.high,
@@ -32,14 +32,11 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
           Positioned(
               top: 40,
               left: 15,
-              child: IconButton(
+              child: BackButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: marvelColor,
-                ),
+                color: marvelColor,
               )),
           Positioned(
               left: 15,

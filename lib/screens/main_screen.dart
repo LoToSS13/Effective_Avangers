@@ -6,11 +6,13 @@ import 'package:effective_avangers/database/hero_database.dart';
 import 'package:effective_avangers/models/hero_info_data.dart';
 import 'package:effective_avangers/network/api_client.dart';
 import 'package:effective_avangers/widgets/logo_widget.dart';
-import 'package:effective_avangers/widgets/my_painter.dart';
+import 'package:effective_avangers/widgets/background_triangle_painter.dart';
 import 'package:effective_avangers/widgets/swiper_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:drift/drift.dart' as drift;
+
+import '../widgets/reload_button_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key, required this.title}) : super(key: key);
@@ -25,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   PaletteGenerator? paletteGenerator;
   Color backgroundColor = marvelColor;
   List<HeroInfoModel> infos = [];
-  String errorMessage = '';
+  late String errorMessage = '';
   bool generated = false;
   late Widget child;
   bool shouldSaveToDb = false;
@@ -43,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
       }
     } on Exception {
       try {
-        infos = await ApiClient().getChars(apiKey, hash, '29');
+        infos = await ApiClient().getChars(publicKey, privateKey, '29');
         shouldSaveToDb = true;
       } on Exception {
         errorMessage = 'Got some troubles here, Doc';
@@ -63,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
       HeroInfoModel model;
       for (var item in data) {
         model = HeroInfoModel(
+            id: item.id,
             imagePath: item.imagePath,
             name: item.name,
             description: item.description);
@@ -119,37 +122,30 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  onReloadButtonPressed() {
+    errorMessage = '';
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (infos.isEmpty) {
-      child = Center(
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: whiteColor, shape: const CircleBorder()),
-            onPressed: () {
-              errorMessage = '';
-              getData();
-            },
-            child: const Icon(
-              Icons.refresh_outlined,
-              color: marvelColor,
-            )),
-      );
-    } else {
-      child = SwiperWidget(
-        onIndexChanged: onIndexChanged,
-        infos: infos,
-      );
-    }
     atStart();
     return Scaffold(
       backgroundColor: mainBackgroundColor,
       body: CustomPaint(
-        painter: MyPainter(color: backgroundColor),
+        painter: BackgroundTrianglePainter(color: backgroundColor),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40),
           child: Column(
-            children: [const LogoWidget(), child],
+            children: [
+              const LogoWidget(),
+              infos.isEmpty
+                  ? ReloadButton(onPressed: onReloadButtonPressed)
+                  : SwiperWidget(
+                      onIndexChanged: onIndexChanged,
+                      infos: infos,
+                    )
+            ],
           ),
         ),
       ),

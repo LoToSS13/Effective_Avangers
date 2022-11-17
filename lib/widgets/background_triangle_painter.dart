@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class MyPainter extends CustomPainter {
+class BackgroundTrianglePainter extends CustomPainter {
   Color color;
 
-  MyPainter({required this.color});
+  BackgroundTrianglePainter({required this.color});
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -128,13 +128,14 @@ class HeroInfoCompanion extends UpdateCompanion<HeroInfoData> {
     this.imagePath = const Value.absent(),
   });
   HeroInfoCompanion.insert({
-    this.id = const Value.absent(),
+    required int id,
     required String name,
     required String description,
     required int textColor,
     required int backgroundColor,
     required String imagePath,
-  })  : name = Value(name),
+  })  : id = Value(id),
+        name = Value(name),
         description = Value(description),
         textColor = Value(textColor),
         backgroundColor = Value(backgroundColor),
@@ -222,9 +223,7 @@ class $HeroInfoTable extends HeroInfo
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
+      type: DriftSqlType.int, requiredDuringInsert: true);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
@@ -266,6 +265,8 @@ class $HeroInfoTable extends HeroInfo
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -305,7 +306,7 @@ class $HeroInfoTable extends HeroInfo
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
   @override
   HeroInfoData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
