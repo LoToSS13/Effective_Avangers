@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
+import '../database/hero_database.dart';
 
 class HeroInfoModel {
   final int id;
   final String name;
   final String imagePath;
-  Color? backgroundColor;
-  Color? textColor;
   final String description;
   HeroInfoModel(
       {required this.imagePath,
@@ -20,5 +18,13 @@ class HeroInfoModel {
         name: json['name'],
         description: json['description'],
         id: json['id']);
+  }
+
+  factory HeroInfoModel.fromDB(HeroInfoData data) {
+    return HeroInfoModel(
+        id: data.id,
+        imagePath: data.imagePath,
+        name: data.name,
+        description: data.description);
   }
 }

@@ -1,6 +1,5 @@
-import 'package:effective_avangers/constant/colors.dart';
-import 'package:effective_avangers/constant/image_paths.dart';
-import 'package:effective_avangers/constant/text_styles.dart';
+import 'package:effective_avangers/src/constant/image_paths.dart';
+import 'package:effective_avangers/src/constant/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
@@ -26,7 +25,7 @@ class LogoWidget extends StatelessWidget {
           ),
           Text(
             'Choose your hero',
-            style: nameTextStyle(whiteColor),
+            style: nameTextStyle,
           ),
         ],
       ),
