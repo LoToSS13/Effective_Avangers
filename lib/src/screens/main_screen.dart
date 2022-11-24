@@ -84,12 +84,6 @@ class MainScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   const LogoWidget(),
-                  // PageView.builder(
-                  //   itemCount: data.length,
-
-                  //   itemBuilder: (context, index) {
-                  //     return HeroCard(heroInfo: data[index]);
-                  //   },
                   // ignore: unnecessary_null_comparison
                   if (data != null) SwiperWidget(infos: data) // )
                 ],
