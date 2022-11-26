@@ -1,11 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:effective_avangers/models/infos.dart';
+import 'package:effective_avangers/models/hero_info_data.dart';
 import 'package:effective_avangers/widgets/hero_card.dart';
 import 'package:flutter/material.dart';
 
 class SwiperWidget extends StatelessWidget {
   final Function(int) onIndexChanged;
-  const SwiperWidget({Key? key, required this.onIndexChanged})
+  final List<HeroInfoModel> infos;
+  const SwiperWidget(
+      {Key? key, required this.onIndexChanged, required this.infos})
       : super(key: key);
 
   @override
@@ -25,5 +27,3 @@ class SwiperWidget extends StatelessWidget {
     );
   }
 }
-
-onIndexChanged(int index) {}

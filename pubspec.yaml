@@ -18,11 +18,20 @@ dependencies:
   cupertino_icons: ^1.0.2
   card_swiper: ^2.0.4
   cached_network_image: 
+  dio: ^4.0.6
+  palette_generator: ^0.3.3+2 
+  drift: ^2.2.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: 
+  crypto: ^3.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  drift_dev: ^2.2.0+1
+  build_runner: ^2.2.1
 
 flutter:
 

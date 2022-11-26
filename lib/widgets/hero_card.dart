@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:effective_avangers/constant/colors.dart';
 import 'package:effective_avangers/constant/text_styles.dart';
-import 'package:effective_avangers/models/hero_info.dart';
+import 'package:effective_avangers/models/hero_info_data.dart';
 import 'package:effective_avangers/screens/hero_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class HeroCard extends StatelessWidget {
-  final HeroInfo heroInfo;
+  final HeroInfoModel heroInfo;
   const HeroCard({Key? key, required this.heroInfo}) : super(key: key);
 
   @override
@@ -22,21 +23,23 @@ class HeroCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           child: Stack(fit: StackFit.passthrough, children: [
             Hero(
-              tag: heroInfo.name,
+              tag: heroInfo.id,
               child: CachedNetworkImage(
                 imageUrl: heroInfo.imagePath,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             Positioned(
               bottom: 30,
               left: 40,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                verticalDirection: VerticalDirection.up,
-                children: [
-                  Text(heroInfo.name, style: nameTextStyle),
-                ],
+              child: SizedBox(
+                width: 300,
+                child: Text(
+                  heroInfo.name,
+                  style: nameTextStyle(heroInfo.textColor ?? whiteColor),
+                  maxLines: 3,
+                  softWrap: true,
+                ),
               ),
             ),
           ]),
