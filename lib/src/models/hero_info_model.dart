@@ -27,4 +27,9 @@ class HeroInfoModel {
         name: data.name,
         description: data.description);
   }
+
+  @override
+  String toString() {
+    return 'id : $id name : $name description : $description imagePath: $imagePath';
+  }
 }

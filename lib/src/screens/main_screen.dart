@@ -1,5 +1,5 @@
 import 'package:effective_avangers/src/database/hero_database.dart';
-import 'package:effective_avangers/src/models/hero_info_data.dart';
+import 'package:effective_avangers/src/models/hero_info_model.dart';
 import 'package:effective_avangers/src/widgets/background_triangle_painter.dart';
 import 'package:effective_avangers/src/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,23 +15,26 @@ import '../widgets/progress_indicator.dart';
 import '../widgets/swiper_widget.dart';
 
 final charactersInfosProvider = FutureProvider((ref) async {
+  late List<HeroInfoModel>? infos;
+
   try {
-    final infos = await ref.watch(networkCharactersProvider);
-    return infos;
+    infos = await ref.watch(networkCharactersProvider);
   } on Exception {
-    final infos = await ref.watch(dataBaseCharactersProvider);
-    return infos;
+    // final infos = await ref.watch(dataBaseCharactersProvider);
+    // return infos;
   }
+  return infos;
 });
 
 final networkCharactersProvider = Provider((ref) async {
   try {
     final charactersRepository = ref.watch(charactersRepositoryProvider);
-    final infos = await charactersRepository.getCharacters('58');
+    final infos = await charactersRepository.getCharacters();
     final heroDatabase = ref.watch(heroDataBaseProvider);
 
     for (HeroInfoModel item in infos) {
       heroDatabase.insertHeroInfo(HeroInfoCompanion(
+          id: drift.Value(item.id),
           name: drift.Value(item.name),
           description: drift.Value(item.description),
           imagePath: drift.Value(item.imagePath)));
@@ -47,22 +50,17 @@ final dataBaseCharactersProvider = Provider(
     try {
       final heroDatabase = ref.watch(heroDataBaseProvider);
       var data = await heroDatabase.getHeroInfos();
-
-      return fetchCharacters(data);
+      if (data.isEmpty) throw Exception();
+      final List<HeroInfoModel> infos = [];
+      for (var item in data) {
+        infos.add(HeroInfoModel.fromDB(item));
+      }
+      return infos;
     } on Exception {
       rethrow;
     }
   },
 );
-
-List<HeroInfoModel> fetchCharacters(List<HeroInfoData> data) {
-  if (data.isEmpty) throw Exception();
-  final List<HeroInfoModel> infos = [];
-  for (var item in data) {
-    infos.add(HeroInfoModel.fromDB(item));
-  }
-  return infos;
-}
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
@@ -77,16 +75,17 @@ class MainScreen extends ConsumerWidget {
         loading: (() => const LoadingProgressIndicator()),
         error: ((error, stackTrace) => const DataErrorWidget()),
         data: (data) {
-          return CustomPaint(
-            painter: BackgroundTrianglePainter(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40),
-              child: Column(
-                children: [
-                  const LogoWidget(),
-                  // ignore: unnecessary_null_comparison
-                  if (data != null) SwiperWidget(infos: data) // )
-                ],
+          return RefreshIndicator(
+            onRefresh: () async {
+              ref.refresh(charactersInfosProvider);
+            },
+            child: CustomPaint(
+              painter: BackgroundTrianglePainter(),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40),
+                child: Column(
+                  children: [const LogoWidget(), SwiperWidget(infos: data)],
+                ),
               ),
             ),
           );

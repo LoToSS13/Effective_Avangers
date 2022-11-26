@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:effective_avangers/src/constant/text_styles.dart';
-import 'package:effective_avangers/src/models/hero_info_data.dart';
+import 'package:effective_avangers/src/models/hero_info_model.dart';
 import 'package:effective_avangers/src/screens/hero_detail_screen.dart';
 import 'package:flutter/material.dart';
 

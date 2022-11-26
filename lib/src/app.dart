@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const ProviderScope(child: MainScreen()),
+      home: const MainScreen(),
     );
   }
 }
