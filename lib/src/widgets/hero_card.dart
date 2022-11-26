@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:effective_avangers/constant/colors.dart';
-import 'package:effective_avangers/constant/text_styles.dart';
-import 'package:effective_avangers/models/hero_info_data.dart';
-import 'package:effective_avangers/screens/hero_detail_screen.dart';
+import 'package:effective_avangers/src/constant/text_styles.dart';
+import 'package:effective_avangers/src/models/hero_info_model.dart';
+import 'package:effective_avangers/src/screens/hero_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class HeroCard extends StatelessWidget {
@@ -36,7 +35,7 @@ class HeroCard extends StatelessWidget {
                 width: 300,
                 child: Text(
                   heroInfo.name,
-                  style: nameTextStyle(heroInfo.textColor ?? whiteColor),
+                  style: nameTextStyle,
                   maxLines: 3,
                   softWrap: true,
                 ),

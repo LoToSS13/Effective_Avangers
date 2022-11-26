@@ -1,16 +1,15 @@
+import 'package:effective_avangers/src/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundTrianglePainter extends CustomPainter {
-  Color color;
-
-  BackgroundTrianglePainter({required this.color});
+  BackgroundTrianglePainter();
 
   @override
   void paint(Canvas canvas, Size size) {
     final height = size.height;
     final width = size.width;
     final paint = Paint();
-    paint.color = color;
+    paint.color = marvelColor;
 
     final path = Path();
     path.moveTo(0, height);

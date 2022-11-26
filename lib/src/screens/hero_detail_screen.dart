@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:effective_avangers/constant/colors.dart';
-import 'package:effective_avangers/constant/text_styles.dart';
-import 'package:effective_avangers/models/hero_info_data.dart';
+import 'package:effective_avangers/src/constant/colors.dart';
+import 'package:effective_avangers/src/constant/text_styles.dart';
+import 'package:effective_avangers/src/models/hero_info_model.dart';
 import 'package:flutter/material.dart';
 
 class HeroDetailScreen extends StatefulWidget {
@@ -48,8 +48,7 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
                     width: 300,
                     child: Text(
                       widget.heroInfo.name,
-                      style: nameTextStyle(
-                          widget.heroInfo.textColor ?? whiteColor),
+                      style: nameTextStyle,
                       softWrap: true,
                       maxLines: 3,
                     ),
@@ -61,8 +60,7 @@ class _HeroDetailScreenState extends State<HeroDetailScreen> {
                     width: 400,
                     child: Text(
                       widget.heroInfo.description,
-                      style: descriptionTextStyle(
-                          widget.heroInfo.textColor ?? whiteColor),
+                      style: descriptionTextStyle,
                       softWrap: true,
                       maxLines: 20,
                     ),
