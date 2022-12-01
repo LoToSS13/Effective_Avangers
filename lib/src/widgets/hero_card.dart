@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:effective_avangers/src/constant/text_styles.dart';
+import 'package:effective_avangers/src/models/hero_info_args.dart';
 import 'package:effective_avangers/src/models/hero_info_model.dart';
-import 'package:effective_avangers/src/screens/hero_detail_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../constant/main_navigation_route_name.dart';
 
 class HeroCard extends StatelessWidget {
   final HeroInfoModel heroInfo;
@@ -13,8 +15,9 @@ class HeroCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: GestureDetector(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => HeroDetailScreen(heroInfo: heroInfo))),
+        onTap: () => Navigator.of(context).pushNamed(
+            MainNavigationRouteName.detailed,
+            arguments: HeroInfoArgs(heroInfo: heroInfo)),
         child: Card(
           semanticContainer: true,
           clipBehavior: Clip.antiAliasWithSaveLayer,

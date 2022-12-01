@@ -5,6 +5,8 @@ import 'package:effective_avangers/src/network/characters_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 final _publicKeyProvider = Provider((ref) => dotenv.env['PUBLIC_KEY']!);
 final _privateKeyProvider = Provider((ref) => dotenv.env['PRIVATE_KEY']!);
@@ -28,6 +30,9 @@ final heroDataBaseProvider = Provider((ref) => HeroDatabase());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   await dotenv.load();
 

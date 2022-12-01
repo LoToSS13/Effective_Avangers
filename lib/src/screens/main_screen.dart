@@ -11,7 +11,7 @@ import 'package:drift/drift.dart' as drift;
 import '../../main.dart';
 import '../constant/colors.dart';
 import '../widgets/logo_widget.dart';
-import '../widgets/progress_indicator.dart';
+import '../widgets/loading_progress_indicator.dart';
 import '../widgets/swiper_widget.dart';
 
 final charactersInfosProvider = FutureProvider((ref) async {
@@ -20,8 +20,8 @@ final charactersInfosProvider = FutureProvider((ref) async {
   try {
     infos = await ref.watch(networkCharactersProvider);
   } on Exception {
-    // final infos = await ref.watch(dataBaseCharactersProvider);
-    // return infos;
+    final infos = await ref.watch(dataBaseCharactersProvider);
+    return infos;
   }
   return infos;
 });
@@ -75,17 +75,12 @@ class MainScreen extends ConsumerWidget {
         loading: (() => const LoadingProgressIndicator()),
         error: ((error, stackTrace) => const DataErrorWidget()),
         data: (data) {
-          return RefreshIndicator(
-            onRefresh: () async {
-              ref.refresh(charactersInfosProvider);
-            },
-            child: CustomPaint(
-              painter: BackgroundTrianglePainter(),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40),
-                child: Column(
-                  children: [const LogoWidget(), SwiperWidget(infos: data)],
-                ),
+          return CustomPaint(
+            painter: BackgroundTrianglePainter(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40),
+              child: Column(
+                children: [const LogoWidget(), SwiperWidget(infos: data)],
               ),
             ),
           );

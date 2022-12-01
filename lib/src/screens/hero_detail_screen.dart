@@ -4,71 +4,67 @@ import 'package:effective_avangers/src/constant/text_styles.dart';
 import 'package:effective_avangers/src/models/hero_info_model.dart';
 import 'package:flutter/material.dart';
 
-class HeroDetailScreen extends StatefulWidget {
-  final HeroInfoModel heroInfo;
+class HeroDetailScreen extends StatelessWidget {
+  final HeroInfoModel? heroInfo;
   const HeroDetailScreen({Key? key, required this.heroInfo}) : super(key: key);
 
   @override
-  State<HeroDetailScreen> createState() => _HeroDetailScreenState();
-}
-
-class _HeroDetailScreenState extends State<HeroDetailScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Hero(
-            tag: widget.heroInfo.id,
-            child: CachedNetworkImage(
-              imageUrl: widget.heroInfo.imagePath,
-              filterQuality: FilterQuality.high,
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-              alignment: Alignment.center,
-            ),
-          ),
-          Positioned(
-              top: 40,
-              left: 15,
-              child: BackButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: marvelColor,
-              )),
-          Positioned(
-              left: 15,
-              bottom: 20,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        body: heroInfo != null
+            ? Stack(
                 children: [
-                  SizedBox(
-                    width: 300,
-                    child: Text(
-                      widget.heroInfo.name,
-                      style: nameTextStyle,
-                      softWrap: true,
-                      maxLines: 3,
+                  Hero(
+                    tag: heroInfo!.id,
+                    child: CachedNetworkImage(
+                      imageUrl: heroInfo!.imagePath,
+                      filterQuality: FilterQuality.high,
+                      fit: BoxFit.cover,
+                      height: double.infinity,
+                      width: double.infinity,
+                      alignment: Alignment.center,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: 400,
-                    child: Text(
-                      widget.heroInfo.description,
-                      style: descriptionTextStyle,
-                      softWrap: true,
-                      maxLines: 20,
-                    ),
-                  )
+                  Positioned(
+                      top: 40,
+                      left: 15,
+                      child: BackButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: marvelColor,
+                      )),
+                  Positioned(
+                      left: 15,
+                      bottom: 20,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            child: Text(
+                              heroInfo!.name,
+                              style: nameTextStyle,
+                              softWrap: true,
+                              maxLines: 3,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 400,
+                            child: Text(
+                              heroInfo!.description,
+                              style: descriptionTextStyle,
+                              softWrap: true,
+                              maxLines: 20,
+                            ),
+                          )
+                        ],
+                      ))
                 ],
-              ))
-        ],
-      ),
-    );
+              )
+            : const SizedBox.shrink());
   }
 }

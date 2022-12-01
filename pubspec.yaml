@@ -25,6 +25,8 @@ dependencies:
   crypto: ^3.0.2
   flutter_dotenv: ^5.0.2
   flutter_riverpod: ^2.1.1
+  firebase_messaging: ^14.1.2
+  firebase_core: ^2.3.0
 
 
 

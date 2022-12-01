@@ -32,9 +32,7 @@ class ApiClient implements Interceptor {
         getHash(ts: ts, privateKey: _privateKey, publicKey: _publicKey);
     options.queryParameters
         .addAll({'ts': ts, 'apikey': _publicKey, 'hash': hash});
-    print(ts);
-    print(_publicKey);
-    print(hash);
+    
     handler.next(options);
   }
 
