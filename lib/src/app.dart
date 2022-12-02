@@ -15,11 +15,13 @@ final characterInfoProvider = FutureProvider((ref) async {
 
   final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
   if (initialMessage != null) {
-    final String characterID = initialMessage.data['character_id'];
+    print(initialMessage.data);
+    final String characterID = initialMessage.data['character_id'].toString();
     final characterInfo =
         await charactersRepository.getExactCharacter(characterID);
     return characterInfo;
   }
+
   return null;
 });
 
@@ -58,7 +60,9 @@ class App extends ConsumerWidget {
         );
       },
       home: initialHeroInfo.when(data: ((data) {
-        return HeroDetailScreen(heroInfo: data);
+        return data == null
+            ? const MainScreen()
+            : HeroDetailScreen(heroInfo: data);
       }), error: (err, stackTrace) {
         return const MainScreen();
       }, loading: (() {

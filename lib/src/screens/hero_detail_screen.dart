@@ -11,6 +11,7 @@ class HeroDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: heroInfo != null ? null : AppBar(),
         body: heroInfo != null
             ? Stack(
                 children: [
