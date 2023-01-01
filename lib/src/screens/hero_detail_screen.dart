@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:effective_avangers/src/constant/colors.dart';
+import 'package:effective_avangers/src/constant/main_navigation_route_name.dart';
 import 'package:effective_avangers/src/constant/text_styles.dart';
 import 'package:effective_avangers/src/models/hero_info_model.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,12 @@ class HeroDetailScreen extends StatelessWidget {
                       left: 15,
                       child: BackButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          } else {
+                            Navigator.pushReplacementNamed(
+                                context, MainNavigationRouteName.main);
+                          }
                         },
                         color: marvelColor,
                       )),

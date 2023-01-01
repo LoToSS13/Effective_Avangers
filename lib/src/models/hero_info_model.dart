@@ -5,7 +5,7 @@ class HeroInfoModel {
   final String name;
   final String imagePath;
   final String description;
-  HeroInfoModel(
+  const HeroInfoModel(
       {required this.imagePath,
       required this.name,
       required this.description,
