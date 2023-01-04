@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:effective_avangers/src/app.dart';
 import 'package:effective_avangers/src/constant/colors.dart';
 import 'package:effective_avangers/src/constant/main_navigation_route_name.dart';
 import 'package:effective_avangers/src/constant/text_styles.dart';
@@ -13,6 +12,7 @@ class HeroDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: heroInfo != null ? null : AppBar(),
         body: heroInfo != null
             ? Stack(
                 children: [
@@ -32,11 +32,11 @@ class HeroDetailScreen extends StatelessWidget {
                       left: 15,
                       child: BackButton(
                         onPressed: () {
-                          if (navigatorKey.currentState?.canPop() ?? false) {
-                            navigatorKey.currentState?.pop();
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
                           } else {
-                            navigatorKey.currentState?.pushReplacementNamed(
-                                MainNavigationRouteName.main);
+                            Navigator.pushReplacementNamed(
+                                context, MainNavigationRouteName.main);
                           }
                         },
                         color: marvelColor,

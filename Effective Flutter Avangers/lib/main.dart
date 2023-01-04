@@ -33,7 +33,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   await dotenv.load();
   runApp(const ProviderScope(child: App()));
 }
