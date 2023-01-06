@@ -12,6 +12,8 @@ class HeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextDirection currentDirection = Directionality.of(context);
+    final bool isRTL = currentDirection == TextDirection.rtl;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: GestureDetector(
@@ -31,22 +33,87 @@ class HeroCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Positioned(
-              bottom: 30,
-              left: 40,
-              child: SizedBox(
-                width: 300,
-                child: Text(
-                  heroInfo.name,
-                  style: nameTextStyle,
-                  maxLines: 3,
-                  softWrap: true,
-                ),
-              ),
-            ),
+            TextWidget(
+                heroInfo: heroInfo,
+                currentDirection: currentDirection,
+                isRTL: isRTL),
           ]),
         ),
       ),
     );
+  }
+}
+
+class TextWidget extends StatelessWidget {
+  const TextWidget({
+    Key? key,
+    required this.heroInfo,
+    required this.currentDirection,
+    required this.isRTL,
+  }) : super(key: key);
+
+  final HeroInfoModel heroInfo;
+  final TextDirection currentDirection;
+  final bool isRTL;
+
+  @override
+  Widget build(BuildContext context) {
+    return isRTL
+        ? Positioned(
+            bottom: 30,
+            right: 40,
+            child: Container(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.45),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white70,
+                      spreadRadius: -5.0,
+                      blurRadius: 20.0,
+                    ),
+                  ],
+                  color: Colors.black.withOpacity(0.45),
+                  borderRadius: BorderRadius.circular(25)),
+              width: 300,
+              child: Text(
+                heroInfo.name,
+                style: nameTextStyle,
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                softWrap: true,
+                textDirection: currentDirection,
+              ),
+            ),
+          )
+        : Positioned(
+            bottom: 30,
+            left: 40,
+            child: Container(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.45),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white70,
+                      spreadRadius: -5.0,
+                      blurRadius: 20.0,
+                    ),
+                  ],
+                  color: Colors.black.withOpacity(0.45),
+                  borderRadius: BorderRadius.circular(25)),
+              width: 300,
+              child: Text(
+                heroInfo.name,
+                style: nameTextStyle,
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                softWrap: true,
+                textDirection: currentDirection,
+              ),
+            ),
+          );
   }
 }

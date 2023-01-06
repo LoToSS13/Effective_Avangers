@@ -1,6 +1,7 @@
 import 'package:effective_avangers/src/constant/image_paths.dart';
 import 'package:effective_avangers/src/constant/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LogoWidget extends StatelessWidget {
   const LogoWidget({
@@ -24,7 +25,7 @@ class LogoWidget extends StatelessWidget {
             height: 30,
           ),
           Text(
-            'Choose your hero',
+            AppLocalizations.of(context)!.mainScreenMessage,
             style: nameTextStyle,
           ),
         ],

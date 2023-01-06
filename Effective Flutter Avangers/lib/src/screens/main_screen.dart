@@ -68,6 +68,7 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final infos = ref.watch(charactersInfosProvider);
+    Orientation orientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
       backgroundColor: mainBackgroundColor,
@@ -79,9 +80,21 @@ class MainScreen extends ConsumerWidget {
             painter: BackgroundTrianglePainter(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 40),
-              child: Column(
-                children: [const LogoWidget(), SwiperWidget(infos: data)],
-              ),
+              child: orientation == Orientation.landscape
+                  ? Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        const LogoWidget(),
+                        SwiperWidget(infos: data)
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [const LogoWidget(), SwiperWidget(infos: data)],
+                    ),
             ),
           );
         },

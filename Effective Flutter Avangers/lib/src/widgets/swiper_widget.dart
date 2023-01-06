@@ -16,8 +16,10 @@ class SwiperWidget extends StatelessWidget {
               viewportFraction: 1,
               itemCount: infos!.length,
               itemBuilder: (BuildContext context, int index) {
-                return HeroCard(
-                  heroInfo: infos![index],
+                return SizedBox(
+                  child: HeroCard(
+                    heroInfo: infos![index],
+                  ),
                 );
               },
             ),

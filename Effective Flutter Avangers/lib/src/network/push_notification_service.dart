@@ -8,8 +8,6 @@ import '../models/hero_info_args.dart';
 import 'characters_repository.dart';
 
 class PushNotificationService {
-  final fcm = FirebaseMessaging.instance;
-
   static Future initialise(WidgetRef ref) async {
     Future<void> messageHandler(RemoteMessage? message,
         CharactersRepository charactersRepository) async {
@@ -23,11 +21,11 @@ class PushNotificationService {
       }
     }
 
-    late CharactersRepository charactersRepository =
-        ref.watch(charactersRepositoryProvider);
-
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
+
+    late CharactersRepository charactersRepository =
+        ref.watch(charactersRepositoryProvider);
 
     FirebaseMessaging.onMessage.listen(
       (event) {
@@ -37,7 +35,6 @@ class PushNotificationService {
     FirebaseMessaging.onMessageOpenedApp.listen(((event) {
       messageHandler(event, charactersRepository);
     }));
-
     if (initialMessage != null) {
       messageHandler(initialMessage, charactersRepository);
     }

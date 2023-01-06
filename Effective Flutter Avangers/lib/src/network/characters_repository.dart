@@ -36,14 +36,13 @@ class CharactersRepository {
   }
 
   Future<HeroInfoModel> getExactCharacter(int characterID) async {
-    print('characterID : $characterID');
     try {
       final response = await apiClient.dio.get(
         _MarvelApiEndpoints.getExactCharacter.endpoint + characterID.toString(),
       );
 
       final data = response.data['data']['results'][0];
-      print('data in getExactChar: $data');
+
       return HeroInfoModel.fromJSON(data);
     } on Exception {
       rethrow;
