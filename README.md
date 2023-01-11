@@ -6,7 +6,7 @@ Only for practice.
 It's a quite simple android app, but it demonstrates core features.
 
 ## What has been done
--Lockalization (En, RU)
+-Lockalization (En, Ru)
 -Edge-to-edge 
 -RTL
 -dark theme (same as light theme)
