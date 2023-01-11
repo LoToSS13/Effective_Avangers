@@ -37,7 +37,7 @@ It's a quite simple android app, but it demonstrates core features.
 
 
 ## How to run
-* You need to add .env file in Efffectvie Flutter Avangers
+* You need to add `.env` file in 'Efffectvie Flutter Avangers'
 * Add `PUBLIC_KEY =<YourKey>`, `BASE_URL ='http://gateway.marvel.com/'`, `PRIVATE_KEY =<YourKey>` in `.env` file, for example `PUBLIC_KEY = '0eca1ebae058a929deabfb0b0e9f9bdd'`
 * Run -> Run 'app'
 
