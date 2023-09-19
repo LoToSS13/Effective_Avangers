@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1045769809063",
+    "project_id": "effective-avangers",
+    "storage_bucket": "effective-avangers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045769809063:android:dc692a323503de0e753f82",
+        "android_client_info": {
+          "package_name": "com.example.effective_avangers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045769809063-8tm33cr4ef4t4n2gf5jhll10o24chnac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW4a575Utzagi5RB-tpFXKsLCJEFu-rHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045769809063-8tm33cr4ef4t4n2gf5jhll10o24chnac.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1045769809063-fq4ctjmh1n74763fat0pcbl9tcfpfiov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.effectiveAvangers"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

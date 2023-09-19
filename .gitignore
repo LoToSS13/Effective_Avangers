@@ -59,6 +59,7 @@ linked_*.ds
 unlinked.ds
 unlinked_spec.ds
 .env
+/Effective Flutter Avangers/android/key.properties
 
 # Android related
 **/android/**/gradle-wrapper.jar
